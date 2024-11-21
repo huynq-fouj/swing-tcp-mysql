@@ -1,0 +1,5 @@
+INDEX VERSION 1.134+D:\LEARN\Java_nang_cao\kttx\bt2\.metadata\.plugins\org.eclipse.jdt.core
+1342698273.index
+1865797976.index
+538602591.index
+3442352770.index
