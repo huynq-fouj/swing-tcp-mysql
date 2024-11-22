@@ -14,17 +14,17 @@ public class StudentRepository {
     private final String driver = "com.mysql.jdbc.Driver";
 
     public StudentRepository() {
-        loadDriver();
+//        loadDriver();
     }
 
-    private void loadDriver() {
-        try {
-            Class.forName(this.driver);
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+//    private void loadDriver() {
+//        try {
+//            Class.forName(this.driver);
+//        } catch (ClassNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//    }
 
     private Connection getConnection() throws SQLException {
         System.out.println("Create new connection.");
