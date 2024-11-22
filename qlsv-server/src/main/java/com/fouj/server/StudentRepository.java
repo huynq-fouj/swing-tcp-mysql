@@ -36,8 +36,7 @@ public class StudentRepository {
         sql.append("INSERT INTO student");
         sql.append("(name, student_code, major, languages, final_score) ");
         sql.append("VALUES(?,?,?,?,?)");
-        try {
-            Connection con = getConnection();
+        try(Connection con = getConnection()) {
             PreparedStatement pre = con.prepareStatement(sql.toString());
             pre.setString(1, student.getName());
             pre.setString(2, student.getStudent_code());
@@ -45,7 +44,6 @@ public class StudentRepository {
             pre.setString(4, student.getLanguages());
             pre.setDouble(5, student.getFinal_score());
             int result = pre.executeUpdate();
-            con.close();
             return result != 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,8 +56,7 @@ public class StudentRepository {
         sql.append("UPDATE student SET ");
         sql.append("name=?, major=?, languages=?, final_score=? ");
         sql.append("WHERE student_code=?");
-        try {
-            Connection con = getConnection();
+        try(Connection con = getConnection()) {
             PreparedStatement pre = con.prepareStatement(sql.toString());
             pre.setString(1, student.getName());
             pre.setString(2, student.getMajor());
@@ -67,7 +64,6 @@ public class StudentRepository {
             pre.setDouble(4, student.getFinal_score());
             pre.setString(5, student.getStudent_code());
             int result = pre.executeUpdate();
-            con.close();
             return result != 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,12 +73,10 @@ public class StudentRepository {
 
     public boolean deleteStudent(String student_code) {
         String sql = "DELETE FROM student WHERE student_code=?";
-        try {
-            Connection con = getConnection();
+        try(Connection con = getConnection()) {
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setString(1, student_code);
             int result = pre.executeUpdate();
-            con.close();
             return result != 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,8 +87,7 @@ public class StudentRepository {
     public Student getStudent(String student_code) {
         Student student = null;
         String sql = "SELECT * FROM student WHERE student_code=?";
-        try {
-            Connection con = getConnection();
+        try(Connection con = getConnection()) {
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setString(1, student_code);
             ResultSet rs = pre.executeQuery();
@@ -109,7 +102,6 @@ public class StudentRepository {
                         .setFinal_score(rs.getDouble("final_score"));
             }
 
-            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -120,8 +112,7 @@ public class StudentRepository {
         List<Student> students = new ArrayList<>();
         String sql = "SELECT * FROM student";
 
-        try {
-            Connection con = getConnection();
+        try(Connection con = getConnection()) {
             PreparedStatement pre = con.prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
 
@@ -136,7 +127,6 @@ public class StudentRepository {
                 students.add(student);
             }
 
-            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
